@@ -1,0 +1,35 @@
+###  LOGIN
+POST http://localhost:8080/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "phone": "123",
+  "password": "123"
+}
+
+
+### REGISTRATION
+POST http://localhost:8080/api/v1/auth/registration
+Content-Type: application/json
+
+{
+  "firstName": "Quzivoy",
+  "lastName": "Buriyev",
+  "phone": "998902812345",
+  "password": "123"
+}
+
+###
+PUT http://localhost:8080/api/v1/auth
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDU0MTQzNzgsImlkIjoiNTUwZTg0MDAtZTI5Yi00MWQ0LWE3MTYtNDQ2NjU1NDQwMDAwIiwicm9sZXMiOlsiU1VQRVJfQURNSU4iLCJVU0VSIiwiU1RBRkYiLCJDSEVGIiwiQURNSU5JU1RSQVRPUiJdLCJleHAiOjE3MDU0NTAzNzgsImlzcyI6InJlc3RhdXJhbnQgUE9SVEFMIn0.fuSoLKilhizG65z-oAGO75bu57IWKiOqTQv7ckez3-2Nrv2R-Ur4KjNmHZme0C-UqMlxgAfl9t_4QFQp_MvNRg
+
+### Update profile role
+PUT http://localhost:8080/api/v1/auth/updateById/1
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDQ4NzMzMDMsImlkIjoiMSIsInJvbGVzIjpbIlNVUEVSX0FETUlOIiwiVVNFUiIsIlNUQUZGIiwiQ0hFRiIsIkFETUlOSVNUUkFUT1IiLCJBRE1JTklTVFJBVE9SIl0sImV4cCI6MTcwNTczNzMwMywiaXNzIjoicmVzdGF1cmFudCBQT1JUQUwifQ.pGZG3andb-eTs7IeBssl5T9H_dcZ2fy1WVOVN1EMzWldbaWuAcwb6IAIbUUTwoqJ0W-MsrptlAIgmXITUlsKkQ
+Content-Type: application/json
+
+{
+  "profileRoles": [
+    "CHEF"
+  ]
+}
