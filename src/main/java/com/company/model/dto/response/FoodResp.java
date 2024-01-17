@@ -1,4 +1,4 @@
-package com.company.model.dto;
+package com.company.model.dto.response;
 
 import lombok.Builder;
 

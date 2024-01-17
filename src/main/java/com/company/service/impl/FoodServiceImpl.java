@@ -5,7 +5,7 @@ import com.company.config.security.details.SecurityUtil;
 import com.company.entity.FoodEntity;
 import com.company.expection.exp.DuplicateItemException;
 import com.company.expection.exp.ItemNotFoundException;
-import com.company.model.dto.FoodResp;
+import com.company.model.dto.response.FoodResp;
 import com.company.model.dto.request.FoodCr;
 import com.company.model.dto.request.FoodUpd;
 import com.company.model.dto.response.ApiResponse;

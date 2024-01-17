@@ -1,7 +1,7 @@
 package com.company.controller;
 
-import com.company.model.dto.TableResp;
-import com.company.model.dto.TableUpdStatus;
+import com.company.model.dto.response.TableResp;
+import com.company.model.dto.request.TableUpdStatus;
 import com.company.model.dto.request.TableCr;
 import com.company.model.dto.request.TableUpd;
 import com.company.model.dto.response.ApiResponse;
