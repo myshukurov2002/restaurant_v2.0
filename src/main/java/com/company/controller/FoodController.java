@@ -1,9 +1,9 @@
 package com.company.controller;
 
-import com.company.model.dto.response.FoodResp;
 import com.company.model.dto.request.FoodCr;
 import com.company.model.dto.request.FoodUpd;
 import com.company.model.dto.response.ApiResponse;
+import com.company.model.dto.response.FoodResp;
 import com.company.service.FoodService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -24,7 +24,8 @@ public class FoodController {
 
     @PostMapping("/create")
     @PreAuthorize("hasAnyRole('STAFF', 'CHEF')")
-    public ResponseEntity<ApiResponse<FoodResp>> create(@Valid @RequestBody FoodCr foodCr) {
+    public ResponseEntity<ApiResponse<FoodResp>> create(
+            @Valid @RequestBody FoodCr foodCr) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(foodService.create(foodCr));
@@ -32,25 +33,33 @@ public class FoodController {
 
     @PutMapping("/update")
     @PreAuthorize("hasAnyRole('STAFF', 'CHEF')")
-    public ResponseEntity<ApiResponse<FoodResp>> update(@RequestParam UUID id,
-                                                        @Valid @RequestBody FoodUpd foodUpd) {
-        return ResponseEntity.ok(foodService.update(id, foodUpd));
+    public ResponseEntity<ApiResponse<FoodResp>> update(
+            @RequestParam UUID id,
+            @Valid @RequestBody FoodUpd foodUpd) {
+        return ResponseEntity
+                .ok(foodService.update(id, foodUpd));
     }
 
     @DeleteMapping("/delete")
     @PreAuthorize("hasAnyRole('STAFF', 'CHEF')")
-    public ResponseEntity<ApiResponse<?>> delete(@RequestParam UUID id) {
-        return ResponseEntity.ok(foodService.delete(id));
+    public ResponseEntity<ApiResponse<?>> delete(
+            @RequestParam UUID id) {
+        return ResponseEntity
+                .ok(foodService.delete(id));
     }
 
     @GetMapping("/open/byId/{id}")
-    public ResponseEntity<ApiResponse<FoodResp>> getById(@PathVariable UUID id) {
-        return ResponseEntity.ok(foodService.getById(id));
+    public ResponseEntity<ApiResponse<FoodResp>> getById(
+            @PathVariable UUID id) {
+        return ResponseEntity
+                .ok(foodService.getById(id));
     }
 
     @GetMapping("/open/all")
-    public ResponseEntity<ApiResponse<Page<FoodResp>>> getAll(@RequestParam(defaultValue = "0") int page,
-                                                              @RequestParam(defaultValue = "8") int size) {
-        return ResponseEntity.ok(foodService.getAll(page, size));
+    public ResponseEntity<ApiResponse<Page<FoodResp>>> getAll(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "8") int size) {
+        return ResponseEntity
+                .ok(foodService.getAll(page, size));
     }
 }

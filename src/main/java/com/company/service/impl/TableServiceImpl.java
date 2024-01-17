@@ -6,11 +6,11 @@ import com.company.entity.TableEntity;
 import com.company.expection.exp.AppBadRequestException;
 import com.company.expection.exp.DuplicateItemException;
 import com.company.expection.exp.ItemNotFoundException;
-import com.company.model.dto.response.TableResp;
-import com.company.model.dto.request.TableUpdStatus;
 import com.company.model.dto.request.TableCr;
 import com.company.model.dto.request.TableUpd;
+import com.company.model.dto.request.TableUpdStatus;
 import com.company.model.dto.response.ApiResponse;
+import com.company.model.dto.response.TableResp;
 import com.company.repository.TableRepository;
 import com.company.service.TableService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +20,7 @@ import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Service
@@ -28,6 +29,7 @@ import java.util.UUID;
 public class TableServiceImpl implements TableService {
 
     private final TableRepository tableRepository;
+
     private final MessageService messageService;
 
     @Override
@@ -75,6 +77,7 @@ public class TableServiceImpl implements TableService {
         return new ApiResponse<>(true, "success.changed.status", toDto(changedTable));
     }
 
+
     @Override
     public ApiResponse<?> delete(UUID id) {
 
@@ -92,6 +95,17 @@ public class TableServiceImpl implements TableService {
     public ApiResponse<TableResp> getById(UUID id) {
 
         return new ApiResponse<>(true, toDto(get(id)));
+    }
+
+    @Override
+    public ApiResponse<TableResp> getByNumber(Integer number) {
+
+        TableEntity table = tableRepository
+                .findByNumberAndVisibilityTrue(number)
+                .filter(t -> Objects.equals(t.getIsBusy(), Boolean.FALSE))
+                .orElseThrow(ItemNotFoundException::new);
+
+        return new ApiResponse<>(true, toDto(table));
     }
 
     @Override

@@ -1,10 +1,10 @@
 package com.company.controller;
 
-import com.company.model.dto.response.TableResp;
-import com.company.model.dto.request.TableUpdStatus;
 import com.company.model.dto.request.TableCr;
 import com.company.model.dto.request.TableUpd;
+import com.company.model.dto.request.TableUpdStatus;
 import com.company.model.dto.response.ApiResponse;
+import com.company.model.dto.response.TableResp;
 import com.company.service.TableService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -26,7 +26,8 @@ public class TableController {
 
     @PostMapping
     @PreAuthorize("hasRole('STAFF')")
-    public ResponseEntity<ApiResponse<TableResp>> create(@Valid @RequestBody TableCr tableCr) {
+    public ResponseEntity<ApiResponse<TableResp>> create(
+            @Valid @RequestBody TableCr tableCr) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(tableService.create(tableCr));
@@ -34,44 +35,57 @@ public class TableController {
 
     @PutMapping
     @PreAuthorize("hasRole('STAFF')")
-    public ResponseEntity<ApiResponse<TableResp>> update(@RequestParam UUID id,
-                                                         @Valid @RequestBody TableUpd tableUpd) {
+    public ResponseEntity<ApiResponse<TableResp>> update(
+            @RequestParam UUID id,
+            @Valid @RequestBody TableUpd tableUpd) {
         return ResponseEntity
                 .ok(tableService.update(id, tableUpd));
     }
 
     @PutMapping("/change")
     @PreAuthorize("hasRole('STAFF')")
-    public ResponseEntity<ApiResponse<TableResp>> changeStatus(@RequestParam UUID id,
-                                                               @Valid @RequestBody TableUpdStatus tableUpdStatus) {
+    public ResponseEntity<ApiResponse<TableResp>> changeStatus(
+            @RequestParam UUID id,
+            @Valid @RequestBody TableUpdStatus tableUpdStatus) {
         return ResponseEntity
                 .ok(tableService.changeStatus(id, tableUpdStatus));
     }
 
     @DeleteMapping
     @PreAuthorize("hasRole('STAFF')")
-    public ResponseEntity<ApiResponse<?>> delete(@RequestParam UUID id) {
+    public ResponseEntity<ApiResponse<?>> delete(
+            @RequestParam UUID id) {
         return ResponseEntity
                 .ok(tableService.delete(id));
     }
 
-    @GetMapping("/open/get")
-    public ResponseEntity<ApiResponse<TableResp>> getById(@RequestParam UUID id) {
+    @GetMapping("/open/get-by-id")
+    public ResponseEntity<ApiResponse<TableResp>> getById(
+            @RequestParam UUID id) {
         return ResponseEntity
                 .ok(tableService.getById(id));
     }
 
+    @GetMapping("/open/get-by-number")
+    public ResponseEntity<ApiResponse<TableResp>> getByNumber(
+            @RequestParam Integer number) {
+        return ResponseEntity
+                .ok(tableService.getByNumber(number));
+    }
+
     @GetMapping("/open/get-all")
-    public ResponseEntity<ApiResponse<Page<TableResp>>> getAll(@RequestParam(defaultValue = "0") int page,
-                                                               @RequestParam(defaultValue = "10") int size) {
+    public ResponseEntity<ApiResponse<Page<TableResp>>> getAll(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
         return ResponseEntity
                 .ok(tableService.getAll(page, size));
     }
 
-    @GetMapping("/open/get-all-by")
-    public ResponseEntity<ApiResponse<Page<TableResp>>> getAllByStatus(@RequestParam(defaultValue = "false") Boolean status,
-                                                               @RequestParam(defaultValue = "0") int page,
-                                                               @RequestParam(defaultValue = "10") int size) {
+    @GetMapping("/open/get-all-by-status")
+    public ResponseEntity<ApiResponse<Page<TableResp>>> getAllByStatus(
+            @RequestParam(defaultValue = "false") Boolean status,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
         return ResponseEntity
                 .ok(tableService.getAllByStatus(status, page, size));
     }

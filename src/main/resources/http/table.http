@@ -42,4 +42,13 @@ GET localhost:8080/api/v1/table/open/get-all
 GET localhost:8080/api/v1/table/open/get-all-by
 
 
+### bron table
+PUT localhost:8080/api/v1/table/bron
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDU1MTg4NDEsImlkIjoiNTUwZTg0MDAtZTI5Yi00MWQ0LWE3MTYtNDQ2NjU1NDQwMDAwIiwicm9sZXMiOlsiU1VQRVJfQURNSU4iLCJVU0VSIiwiU1RBRkYiLCJDSEVGIiwiQURNSU5JU1RSQVRPUiJdLCJleHAiOjE3MDYzODI4NDEsImlzcyI6InJlc3RhdXJhbnQgUE9SVEFMIn0.-CBguPTC1RgzS-4lLhTnbTWNbjnYwZvcsHtxDfbOd6Saj3y61FTf0eKp0ON5gCjyEL7ERl7nu_yfV9iSrj5fbA
+Content-Type: application/json
+
+{
+  "tableNumber": 2,
+  "bronDate": "2024-01-18T10:00"
+}
 

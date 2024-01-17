@@ -18,4 +18,6 @@ public interface TableRepository extends JpaRepository<TableEntity, UUID> {
     List<TableEntity> findAllByIsBusyAndVisibilityTrue(Boolean isBusy, Pageable pageable);
 
     Optional<TableEntity> findByIdAndIsBusyFalseAndVisibilityTrue(UUID id);
+
+    Optional<TableEntity> findByNumberAndIsBusyFalseAndVisibilityTrue(Integer s);
 }

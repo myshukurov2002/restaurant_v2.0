@@ -3,7 +3,7 @@ package com.company.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Setter
@@ -23,7 +23,10 @@ public class BronEntity extends BaseEntity {
     private UUID tableId;
 
     @Column
-    private Date bronTime;
+    private LocalDateTime bronDate;
+
+    @Column
+    private Boolean status;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profile_id", insertable = false, updatable = false)
