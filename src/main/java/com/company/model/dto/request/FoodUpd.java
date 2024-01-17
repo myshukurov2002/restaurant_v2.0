@@ -4,7 +4,6 @@ import lombok.Builder;
 
 import javax.validation.constraints.NotBlank;
 
-@Builder
 public record FoodUpd(
         @NotBlank(message = "{valid.food.name}")
         String name,

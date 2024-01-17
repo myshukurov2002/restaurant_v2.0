@@ -18,4 +18,6 @@ public interface FoodService {
     ApiResponse<FoodResp> getById(UUID id);
 
     ApiResponse<Page<FoodResp>> getAll(int page, int size);
+
+    ApiResponse<FoodResp> getByName(String name);
 }

@@ -95,6 +95,16 @@ public class FoodServiceImpl implements FoodService {
         return new ApiResponse<>(true, new PageImpl<>(foodRespList, pageable, foodRespList.size()));
     }
 
+    @Override
+    public ApiResponse<FoodResp> getByName(String name) {
+
+        FoodEntity food = foodRepository
+                .findByNameAndVisibilityTrue(name)
+                .orElseThrow(ItemNotFoundException::new);
+
+        return new ApiResponse<>(true, toDto(food));
+    }
+
     private FoodEntity get(UUID id) {
 
         return foodRepository
@@ -104,12 +114,18 @@ public class FoodServiceImpl implements FoodService {
 
     private FoodResp toDto(FoodEntity savedFood) {
 
-        return FoodResp.builder().id(savedFood.getId()).name(savedFood.getName()).price(savedFood.getPrice()).build();
+        return FoodResp.builder()
+                .id(savedFood.getId())
+                .name(savedFood.getName())
+                .price(savedFood.getPrice()).build();
     }
 
     private FoodEntity toEntity(FoodCr foodCr) {
 
-        return FoodEntity.builder().name(foodCr.name()).price(foodCr.price()).ownerId(SecurityUtil.getCurrentProfileId()).build();
+        return FoodEntity.builder()
+                .name(foodCr.name())
+                .price(foodCr.price())
+                .ownerId(SecurityUtil.getCurrentProfileId()).build();
     }
 
     private String getMessage(String msg) {

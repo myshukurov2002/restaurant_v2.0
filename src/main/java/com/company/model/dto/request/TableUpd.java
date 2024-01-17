@@ -5,7 +5,6 @@ import lombok.Builder;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
-@Builder
 public record TableUpd(
         @NotBlank(message = "{table.tableNumber}")
         @Min(message = "{table.tableNumber.min}", value = 1)

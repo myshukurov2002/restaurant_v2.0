@@ -55,6 +55,13 @@ public class FoodController {
                 .ok(foodService.getById(id));
     }
 
+    @GetMapping("/open/byName/{name}")
+    public ResponseEntity<ApiResponse<FoodResp>> getByName(
+            @PathVariable String name){
+        return ResponseEntity
+                .ok(foodService.getByName(name));
+    }
+
     @GetMapping("/open/all")
     public ResponseEntity<ApiResponse<Page<FoodResp>>> getAll(
             @RequestParam(defaultValue = "0") int page,

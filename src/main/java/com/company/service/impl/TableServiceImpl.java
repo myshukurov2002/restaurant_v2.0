@@ -77,7 +77,6 @@ public class TableServiceImpl implements TableService {
         return new ApiResponse<>(true, "success.changed.status", toDto(changedTable));
     }
 
-
     @Override
     public ApiResponse<?> delete(UUID id) {
 
@@ -107,7 +106,6 @@ public class TableServiceImpl implements TableService {
 
         return new ApiResponse<>(true, toDto(table));
     }
-
     @Override
     public ApiResponse<Page<TableResp>> getAll(int page, int size) {
 

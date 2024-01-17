@@ -32,5 +32,5 @@ public class OrderEntity extends BaseEntity {
     private CheckEntity check;
 
     @Column(name = "check_id")
-    private UUID profileId;
+    private UUID checkId;
 }

@@ -73,6 +73,7 @@ public class TableController {
                 .ok(tableService.getByNumber(number));
     }
 
+
     @GetMapping("/open/get-all")
     public ResponseEntity<ApiResponse<Page<TableResp>>> getAll(
             @RequestParam(defaultValue = "0") int page,

@@ -7,7 +7,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 
-@Builder
 public record RegistrationDto(
         @NotBlank(message = "{validation.firstname.notblank}") String firstName,
         @NotBlank(message = "{validation.lastname.notblank}") String lastName,
