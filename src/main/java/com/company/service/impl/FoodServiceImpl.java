@@ -5,10 +5,10 @@ import com.company.config.security.details.SecurityUtil;
 import com.company.entity.FoodEntity;
 import com.company.expection.exp.DuplicateItemException;
 import com.company.expection.exp.ItemNotFoundException;
-import com.company.model.dto.response.FoodResp;
 import com.company.model.dto.request.FoodCr;
 import com.company.model.dto.request.FoodUpd;
 import com.company.model.dto.response.ApiResponse;
+import com.company.model.dto.response.FoodResp;
 import com.company.repository.FoodRepository;
 import com.company.service.FoodService;
 import lombok.RequiredArgsConstructor;
@@ -84,7 +84,7 @@ public class FoodServiceImpl implements FoodService {
     public ApiResponse<Page<FoodResp>> getAll(int page, int size) {
 
         Pageable pageable = PageRequest
-                .of(page, size, Sort.by("createdDate").descending());
+                .of(page, size, Sort.by("updatedDate").descending());
 
         List<FoodResp> foodRespList = foodRepository
                 .findAllByVisibilityTrue(pageable)
@@ -92,9 +92,7 @@ public class FoodServiceImpl implements FoodService {
                 .map(this::toDto)
                 .toList();
 
-        Page<FoodResp> foodRespPage = new PageImpl<>(foodRespList, pageable, foodRespList.size());
-
-        return new ApiResponse<>(true, foodRespPage);
+        return new ApiResponse<>(true, new PageImpl<>(foodRespList, pageable, foodRespList.size()));
     }
 
     private FoodEntity get(UUID id) {

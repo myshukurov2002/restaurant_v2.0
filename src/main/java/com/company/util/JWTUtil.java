@@ -13,7 +13,7 @@ import java.util.UUID;
 
 public class JWTUtil {
     @Value("${jwt.expiry}")
-    private static Integer expiry = 10*3600*1000;
+    private static long expiry = 1000*3600*24*10;
 
     @Value("${jwt.secret}")
     private static String secret = "!mazgi_pazgi234^sad***-*-*+*-0293nd42839+nyf423gikeyodun298143ydrijom!mh9l8e]fh";

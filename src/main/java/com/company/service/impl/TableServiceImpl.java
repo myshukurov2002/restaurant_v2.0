@@ -3,6 +3,7 @@ package com.company.service.impl;
 import com.company.config.i18n.MessageService;
 import com.company.config.security.details.SecurityUtil;
 import com.company.entity.TableEntity;
+import com.company.expection.exp.AppBadRequestException;
 import com.company.expection.exp.DuplicateItemException;
 import com.company.expection.exp.ItemNotFoundException;
 import com.company.model.dto.response.TableResp;
@@ -15,8 +16,10 @@ import com.company.service.TableService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -61,8 +64,9 @@ public class TableServiceImpl implements TableService {
     @Override
     public ApiResponse<TableResp> changeStatus(UUID id, TableUpdStatus tableUpdStatus) {
 
-        TableEntity table = get(id);
-        table.setIsBusy(tableUpdStatus.isBusy());
+        TableEntity table = tableRepository
+                .findByIdAndIsBusyFalseAndVisibilityTrue(id)
+                .orElseThrow(() -> new AppBadRequestException("table.is.busy"));
 
         TableEntity changedTable = tableRepository.save(table);
 
@@ -81,7 +85,43 @@ public class TableServiceImpl implements TableService {
 
         log.warn("table deleted: " + table.getId() + " ");
 
-        return new ApiResponse<>(true, "success.deleted");
+        return new ApiResponse<>(true, getMessage("success.deleted"));
+    }
+
+    @Override
+    public ApiResponse<TableResp> getById(UUID id) {
+
+        return new ApiResponse<>(true, toDto(get(id)));
+    }
+
+    @Override
+    public ApiResponse<Page<TableResp>> getAll(int page, int size) {
+
+        Pageable pageable = PageRequest
+                .of(page, size, Sort.by("updatedDate").descending());
+
+        List<TableResp> tableRespList = tableRepository
+                .findAllByVisibilityTrue(pageable)
+                .stream()
+                .map(this::toDto)
+                .toList();
+
+        return new ApiResponse<>(true, new PageImpl<>(tableRespList, pageable, tableRespList.size()));
+    }
+
+    @Override
+    public ApiResponse<Page<TableResp>> getAllByStatus(Boolean isBusy, int page, int size) {
+
+        Pageable pageable = PageRequest
+                .of(page, size, Sort.by("updatedDate"));
+
+        List<TableResp> tableRespList = tableRepository
+                .findAllByIsBusyAndVisibilityTrue(isBusy, pageable)
+                .stream()
+                .map(this::toDto)
+                .toList();
+
+        return new ApiResponse<>(true, new PageImpl<>(tableRespList, pageable, tableRespList.size()));
     }
 
     private TableEntity get(UUID id) {

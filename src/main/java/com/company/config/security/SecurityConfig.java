@@ -34,8 +34,8 @@ public class SecurityConfig {
             "/v3/api-docs",
             "/v3/api-docs/**",
             "/swagger-ui/**",
-            "/api/v1/food",
-            "/api/v1/food/*"
+            "/api/v1/food/open/**",
+            "/api/v1/table/open/**"
     };
 
     @Autowired

@@ -1,16 +1,16 @@
 ### Create table
 POST localhost:8080/api/v1/table
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDU0MTQzNzgsImlkIjoiNTUwZTg0MDAtZTI5Yi00MWQ0LWE3MTYtNDQ2NjU1NDQwMDAwIiwicm9sZXMiOlsiU1VQRVJfQURNSU4iLCJVU0VSIiwiU1RBRkYiLCJDSEVGIiwiQURNSU5JU1RSQVRPUiJdLCJleHAiOjE3MDU0NTAzNzgsImlzcyI6InJlc3RhdXJhbnQgUE9SVEFMIn0.fuSoLKilhizG65z-oAGO75bu57IWKiOqTQv7ckez3-2Nrv2R-Ur4KjNmHZme0C-UqMlxgAfl9t_4QFQp_MvNRg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDU0OTY3ODYsImlkIjoiNTUwZTg0MDAtZTI5Yi00MWQ0LWE3MTYtNDQ2NjU1NDQwMDAwIiwicm9sZXMiOlsiU1VQRVJfQURNSU4iLCJVU0VSIiwiU1RBRkYiLCJDSEVGIiwiQURNSU5JU1RSQVRPUiJdLCJleHAiOjE3MDYzNjA3ODYsImlzcyI6InJlc3RhdXJhbnQgUE9SVEFMIn0.aWV4500yw-VjUIApg578uDm6-m7NAbqjuwKQdMXod_yzThHIsxEuB3oxAN8YnA8cw4_70j0Hb_87VoFF14VoDA
 Content-Type: application/json
 
 {
   "type": 2,
-  "number": 1
+  "number": 4
 }
 
 ### Update table
-PUT localhost:8080/api/v1/table?id=0fc45826-7831-4f17-b139-07bc99d2aeca
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDU0MTQzNzgsImlkIjoiNTUwZTg0MDAtZTI5Yi00MWQ0LWE3MTYtNDQ2NjU1NDQwMDAwIiwicm9sZXMiOlsiU1VQRVJfQURNSU4iLCJVU0VSIiwiU1RBRkYiLCJDSEVGIiwiQURNSU5JU1RSQVRPUiJdLCJleHAiOjE3MDU0NTAzNzgsImlzcyI6InJlc3RhdXJhbnQgUE9SVEFMIn0.fuSoLKilhizG65z-oAGO75bu57IWKiOqTQv7ckez3-2Nrv2R-Ur4KjNmHZme0C-UqMlxgAfl9t_4QFQp_MvNRg
+PUT localhost:8080/api/v1/table?id=cfce5cb9-3d37-4c7f-a318-c61cadb843a9
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDU0OTY3ODYsImlkIjoiNTUwZTg0MDAtZTI5Yi00MWQ0LWE3MTYtNDQ2NjU1NDQwMDAwIiwicm9sZXMiOlsiU1VQRVJfQURNSU4iLCJVU0VSIiwiU1RBRkYiLCJDSEVGIiwiQURNSU5JU1RSQVRPUiJdLCJleHAiOjE3MDYzNjA3ODYsImlzcyI6InJlc3RhdXJhbnQgUE9SVEFMIn0.aWV4500yw-VjUIApg578uDm6-m7NAbqjuwKQdMXod_yzThHIsxEuB3oxAN8YnA8cw4_70j0Hb_87VoFF14VoDA
 Content-Type: application/json
 
 {
@@ -19,28 +19,27 @@ Content-Type: application/json
 }
 
 ### Change status table
-PUT localhost:8080/api/v1/table/change?id=0fc45826-7831-4f17-b139-07bc99d2aeca
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDU0MTQzNzgsImlkIjoiNTUwZTg0MDAtZTI5Yi00MWQ0LWE3MTYtNDQ2NjU1NDQwMDAwIiwicm9sZXMiOlsiU1VQRVJfQURNSU4iLCJVU0VSIiwiU1RBRkYiLCJDSEVGIiwiQURNSU5JU1RSQVRPUiJdLCJleHAiOjE3MDU0NTAzNzgsImlzcyI6InJlc3RhdXJhbnQgUE9SVEFMIn0.fuSoLKilhizG65z-oAGO75bu57IWKiOqTQv7ckez3-2Nrv2R-Ur4KjNmHZme0C-UqMlxgAfl9t_4QFQp_MvNRg
+PUT localhost:8080/api/v1/table/change?id=3a2089f7-0a2c-4c5d-b466-6d23bd689eb8
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDU0OTY3ODYsImlkIjoiNTUwZTg0MDAtZTI5Yi00MWQ0LWE3MTYtNDQ2NjU1NDQwMDAwIiwicm9sZXMiOlsiU1VQRVJfQURNSU4iLCJVU0VSIiwiU1RBRkYiLCJDSEVGIiwiQURNSU5JU1RSQVRPUiJdLCJleHAiOjE3MDYzNjA3ODYsImlzcyI6InJlc3RhdXJhbnQgUE9SVEFMIn0.aWV4500yw-VjUIApg578uDm6-m7NAbqjuwKQdMXod_yzThHIsxEuB3oxAN8YnA8cw4_70j0Hb_87VoFF14VoDA
 Content-Type: application/json
 
 {
-  "isBusy": false
+  "isBusy": true
 }
 
 
 ### Delete table
-DELETE localhost:8080/api/v1/table?id=0fc45826-7831-4f17-b139-07bc99d2aeca
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDQ4NzMzMDMsImlkIjoiMSIsInJvbGVzIjpbIlNVUEVSX0FETUlOIiwiVVNFUiIsIlNUQUZGIiwiQ0hFRiIsIkFETUlOSVNUUkFUT1IiLCJBRE1JTklTVFJBVE9SIl0sImV4cCI6MTcwNTczNzMwMywiaXNzIjoicmVzdGF1cmFudCBQT1JUQUwifQ.pGZG3andb-eTs7IeBssl5T9H_dcZ2fy1WVOVN1EMzWldbaWuAcwb6IAIbUUTwoqJ0W-MsrptlAIgmXITUlsKkQ
-
+DELETE localhost:8080/api/v1/table?id=3a2089f7-0a2c-4c5d-b466-6d23bd689eb8
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDU0OTY3ODYsImlkIjoiNTUwZTg0MDAtZTI5Yi00MWQ0LWE3MTYtNDQ2NjU1NDQwMDAwIiwicm9sZXMiOlsiU1VQRVJfQURNSU4iLCJVU0VSIiwiU1RBRkYiLCJDSEVGIiwiQURNSU5JU1RSQVRPUiJdLCJleHAiOjE3MDYzNjA3ODYsImlzcyI6InJlc3RhdXJhbnQgUE9SVEFMIn0.aWV4500yw-VjUIApg578uDm6-m7NAbqjuwKQdMXod_yzThHIsxEuB3oxAN8YnA8cw4_70j0Hb_87VoFF14VoDA
 
 ###Get table by id
-GET localhost:8080/api/v1/table/open/getById/1
+GET localhost:8080/api/v1/table/open/get?id=3a2089f7-0a2c-4c5d-b466-6d23bd689eb8
 
 ###Get all table
-GET localhost:8080/api/v1/table/open/getList
+GET localhost:8080/api/v1/table/open/get-all
 
 ###paging table
-GET localhost:8080/api/v1/table/open/paging
+GET localhost:8080/api/v1/table/open/get-all-by
 
 
 

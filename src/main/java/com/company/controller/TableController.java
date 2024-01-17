@@ -7,6 +7,7 @@ import com.company.model.dto.request.TableUpd;
 import com.company.model.dto.response.ApiResponse;
 import com.company.service.TableService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,7 +25,7 @@ public class TableController {
     private final TableService tableService;
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('STAFF')")
+    @PreAuthorize("hasRole('STAFF')")
     public ResponseEntity<ApiResponse<TableResp>> create(@Valid @RequestBody TableCr tableCr) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -32,7 +33,7 @@ public class TableController {
     }
 
     @PutMapping
-    @PreAuthorize("hasAnyRole('STAFF')")
+    @PreAuthorize("hasRole('STAFF')")
     public ResponseEntity<ApiResponse<TableResp>> update(@RequestParam UUID id,
                                                          @Valid @RequestBody TableUpd tableUpd) {
         return ResponseEntity
@@ -40,7 +41,7 @@ public class TableController {
     }
 
     @PutMapping("/change")
-    @PreAuthorize("hasAnyRole('STAFF')")
+    @PreAuthorize("hasRole('STAFF')")
     public ResponseEntity<ApiResponse<TableResp>> changeStatus(@RequestParam UUID id,
                                                                @Valid @RequestBody TableUpdStatus tableUpdStatus) {
         return ResponseEntity
@@ -48,9 +49,30 @@ public class TableController {
     }
 
     @DeleteMapping
-    @PreAuthorize("hasAnyRole('STAFF')")
+    @PreAuthorize("hasRole('STAFF')")
     public ResponseEntity<ApiResponse<?>> delete(@RequestParam UUID id) {
         return ResponseEntity
                 .ok(tableService.delete(id));
+    }
+
+    @GetMapping("/open/get")
+    public ResponseEntity<ApiResponse<TableResp>> getById(@RequestParam UUID id) {
+        return ResponseEntity
+                .ok(tableService.getById(id));
+    }
+
+    @GetMapping("/open/get-all")
+    public ResponseEntity<ApiResponse<Page<TableResp>>> getAll(@RequestParam(defaultValue = "0") int page,
+                                                               @RequestParam(defaultValue = "10") int size) {
+        return ResponseEntity
+                .ok(tableService.getAll(page, size));
+    }
+
+    @GetMapping("/open/get-all-by")
+    public ResponseEntity<ApiResponse<Page<TableResp>>> getAllByStatus(@RequestParam(defaultValue = "false") Boolean status,
+                                                               @RequestParam(defaultValue = "0") int page,
+                                                               @RequestParam(defaultValue = "10") int size) {
+        return ResponseEntity
+                .ok(tableService.getAllByStatus(status, page, size));
     }
 }

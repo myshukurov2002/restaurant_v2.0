@@ -22,7 +22,7 @@ public class FoodController {
 
     private final FoodService foodService;
 
-    @PostMapping
+    @PostMapping("/create")
     @PreAuthorize("hasAnyRole('STAFF', 'CHEF')")
     public ResponseEntity<ApiResponse<FoodResp>> create(@Valid @RequestBody FoodCr foodCr) {
         return ResponseEntity
@@ -30,25 +30,25 @@ public class FoodController {
                 .body(foodService.create(foodCr));
     }
 
-    @PutMapping
+    @PutMapping("/update")
     @PreAuthorize("hasAnyRole('STAFF', 'CHEF')")
     public ResponseEntity<ApiResponse<FoodResp>> update(@RequestParam UUID id,
                                                         @Valid @RequestBody FoodUpd foodUpd) {
         return ResponseEntity.ok(foodService.update(id, foodUpd));
     }
 
-    @DeleteMapping
+    @DeleteMapping("/delete")
     @PreAuthorize("hasAnyRole('STAFF', 'CHEF')")
     public ResponseEntity<ApiResponse<?>> delete(@RequestParam UUID id) {
         return ResponseEntity.ok(foodService.delete(id));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/open/byId/{id}")
     public ResponseEntity<ApiResponse<FoodResp>> getById(@PathVariable UUID id) {
         return ResponseEntity.ok(foodService.getById(id));
     }
 
-    @GetMapping
+    @GetMapping("/open/all")
     public ResponseEntity<ApiResponse<Page<FoodResp>>> getAll(@RequestParam(defaultValue = "0") int page,
                                                               @RequestParam(defaultValue = "8") int size) {
         return ResponseEntity.ok(foodService.getAll(page, size));
