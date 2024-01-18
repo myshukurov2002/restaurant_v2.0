@@ -10,6 +10,7 @@ import java.util.Locale;
 @Service
 @RequiredArgsConstructor
 public class MessageService {
+
     private final MessageSource messageSource;
 
     public String getMessage(String key, Locale locale) {
@@ -17,7 +18,6 @@ public class MessageService {
     }
 
     public String getMessage(String key) {
-        Locale locale = LocaleContextHolder.getLocale();
-        return messageSource.getMessage(key, null, locale);
+        return messageSource.getMessage(key, null, LocaleContextHolder.getLocale());
     }
 }

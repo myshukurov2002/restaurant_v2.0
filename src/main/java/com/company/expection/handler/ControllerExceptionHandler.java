@@ -4,7 +4,7 @@ import com.company.config.i18n.MessageService;
 import com.company.expection.exp.AppBadRequestException;
 import com.company.expection.exp.DuplicateItemException;
 import com.company.expection.exp.ItemNotFoundException;
-import com.company.model.dto.response.ApiResponse;
+import com.company.base.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

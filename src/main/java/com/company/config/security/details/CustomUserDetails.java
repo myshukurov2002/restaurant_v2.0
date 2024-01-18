@@ -1,15 +1,14 @@
 package com.company.config.security.details;
 
-import com.company.entity.ProfileEntity;
-import com.company.model.enums.ProfileRole;
-import com.company.model.enums.ProfileStatus;
+import com.company.auth.entity.ProfileEntity;
+import com.company.auth.enums.ProfileRole;
+import com.company.auth.enums.ProfileStatus;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 

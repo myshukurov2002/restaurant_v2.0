@@ -2,7 +2,7 @@ package com.company.config.security.jwt;
 
 import com.company.config.security.SecurityConfig;
 import com.company.expection.exp.UnAuthorizedException;
-import com.company.model.dto.response.JwtResponse;
+import com.company.auth.dto.JwtResponse;
 import com.company.util.JWTUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

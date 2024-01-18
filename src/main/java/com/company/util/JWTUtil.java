@@ -1,9 +1,9 @@
 package com.company.util;
 
 
-import com.company.model.enums.ProfileRole;
+import com.company.auth.enums.ProfileRole;
 import com.company.expection.exp.UnAuthorizedException;
-import com.company.model.dto.response.JwtResponse;
+import com.company.auth.dto.JwtResponse;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
 

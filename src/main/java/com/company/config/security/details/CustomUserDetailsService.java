@@ -1,9 +1,9 @@
 package com.company.config.security.details;
 
-import com.company.entity.ProfileEntity;
+import com.company.auth.entity.ProfileEntity;
 import com.company.expection.exp.AppBadRequestException;
-import com.company.repository.ProfileRepository;
-import com.company.repository.ProfileRoleRepository;
+import com.company.auth.ProfileRepository;
+import com.company.auth.ProfileRoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

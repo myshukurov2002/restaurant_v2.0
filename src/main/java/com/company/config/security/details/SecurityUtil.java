@@ -1,8 +1,8 @@
 
 package com.company.config.security.details;
 
-import com.company.entity.ProfileEntity;
-import com.company.entity.ProfileRoleEntity;
+import com.company.auth.entity.ProfileEntity;
+import com.company.auth.entity.ProfileRoleEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
