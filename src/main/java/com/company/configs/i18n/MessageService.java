@@ -1,4 +1,4 @@
-package com.company.config.i18n;
+package com.company.configs.i18n;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;

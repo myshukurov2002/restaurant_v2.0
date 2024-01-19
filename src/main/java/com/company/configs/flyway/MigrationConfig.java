@@ -1,4 +1,4 @@
-package com.company.config.flyway;
+package com.company.configs.flyway;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;

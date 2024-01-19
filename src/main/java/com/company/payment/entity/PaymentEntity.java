@@ -1,13 +1,13 @@
-package com.company.menu;
+package com.company.payment.entity;
 
-import com.company.base.BaseEntity;
-import com.company.order.entity.OrderEntity;
 import com.company.auth.entity.ProfileEntity;
+import com.company.base.BaseEntity;
+import com.company.menu.entity.MenuEntity;
 import com.company.table.entity.TableEntity;
-import com.company.menu.enums.MenuStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,8 +17,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "checks")
-public class MenuEntity extends BaseEntity {
+@Table(name = "payment")
+public class PaymentEntity extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id", insertable = false, updatable = false)
@@ -35,13 +35,16 @@ public class MenuEntity extends BaseEntity {
     private UUID tableId;
 
     @Column
-    private Double sum = 0.0;//TODO DELETE
+    private BigDecimal sum = BigDecimal.ZERO;
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "menu_id", insertable = false, updatable = false)
+    private MenuEntity menu;
+
+    @Column(name = "menu_id")
+    private UUID menuId;
+
     @Column
-    private MenuStatus menuStatus;
-
-    @OneToMany(mappedBy = "check", fetch = FetchType.EAGER)
-    private List<OrderEntity> orderEntities;
+    private Boolean isPayed;
 
 }

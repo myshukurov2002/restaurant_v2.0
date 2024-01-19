@@ -1,8 +1,9 @@
-package com.company.check;
+package com.company.menu.entity;
 
 import com.company.auth.entity.ProfileEntity;
 import com.company.base.BaseEntity;
 import com.company.order.entity.OrderEntity;
+import com.company.payment.entity.PaymentEntity;
 import com.company.table.entity.TableEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -16,8 +17,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "checks")
-public class CheckEntity extends BaseEntity {
+@Table(name = "menu")
+public class MenuEntity extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id", insertable = false, updatable = false)
@@ -34,9 +35,11 @@ public class CheckEntity extends BaseEntity {
     private UUID tableId;
 
     @Column
-    private Double sum = 0.0;
+    private Boolean isCanceled;
 
-    @OneToMany(mappedBy = "check", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "menu", fetch = FetchType.EAGER)
     private List<OrderEntity> orderEntities;
 
+    @OneToMany(mappedBy = "menu", fetch = FetchType.LAZY)
+    private List<PaymentEntity> paymentEntities;
 }

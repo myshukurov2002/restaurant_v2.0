@@ -1,4 +1,4 @@
-package com.company.config.security.swagger;
+package com.company.configs.security.swagger;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;

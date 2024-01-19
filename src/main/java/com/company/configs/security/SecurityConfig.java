@@ -1,7 +1,7 @@
-package com.company.config.security;
+package com.company.configs.security;
 
-import com.company.config.security.jwt.JwtTokenFilter;
-import com.company.util.MD5Util;
+import com.company.configs.security.jwt.JwtTokenFilter;
+import com.company.configs.security.utils.md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -58,7 +58,7 @@ public class SecurityConfig {
 
             @Override
             public boolean matches(CharSequence rawPassword, String encodedPassword) {
-                return MD5Util.encode(rawPassword.toString()).equals(encodedPassword);
+                return md5Util.encode(rawPassword.toString()).equals(encodedPassword);
             }
         };
     }

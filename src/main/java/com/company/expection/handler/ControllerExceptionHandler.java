@@ -1,6 +1,6 @@
 package com.company.expection.handler;
 
-import com.company.config.i18n.MessageService;
+import com.company.configs.i18n.MessageService;
 import com.company.expection.exp.AppBadRequestException;
 import com.company.expection.exp.DuplicateItemException;
 import com.company.expection.exp.ItemNotFoundException;

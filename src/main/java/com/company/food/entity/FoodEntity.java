@@ -2,10 +2,12 @@ package com.company.food.entity;
 
 import com.company.auth.entity.ProfileEntity;
 import com.company.base.BaseEntity;
+import com.company.food.enums.FoodStatus;
 import com.company.order.entity.OrderEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,7 +24,14 @@ public class FoodEntity extends BaseEntity {
     private String name;
 
     @Column
-    private Double price;
+    private BigDecimal price;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private FoodStatus foodStatus;
+
+    @OneToMany(mappedBy = "food", fetch = FetchType.LAZY)
+    private List<OrderEntity> order;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id", insertable = false, updatable = false)
@@ -31,7 +40,5 @@ public class FoodEntity extends BaseEntity {
     @Column(name = "owner_id")
     private UUID ownerId;
 
-    @OneToMany(mappedBy = "food", fetch = FetchType.LAZY)
-    private List<OrderEntity> order;
 
 }

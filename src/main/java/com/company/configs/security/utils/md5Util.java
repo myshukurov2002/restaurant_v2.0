@@ -1,8 +1,8 @@
-package com.company.util;
+package com.company.configs.security.utils;
 
 import java.security.MessageDigest;
 
-public class MD5Util {
+public class md5Util {
     public static String encode(String input) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256"); // Corrected to use SHA-256

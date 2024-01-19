@@ -1,4 +1,4 @@
-package com.company.config.flyway;
+package com.company.configs.flyway;
 
 import org.flywaydb.core.Flyway;
 import org.springframework.beans.factory.annotation.Autowired;

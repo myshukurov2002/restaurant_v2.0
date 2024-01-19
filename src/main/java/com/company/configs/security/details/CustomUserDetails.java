@@ -1,4 +1,4 @@
-package com.company.config.security.details;
+package com.company.configs.security.details;
 
 import com.company.auth.entity.ProfileEntity;
 import com.company.auth.enums.ProfileRole;

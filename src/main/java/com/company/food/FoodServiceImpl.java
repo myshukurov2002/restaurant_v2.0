@@ -1,14 +1,14 @@
 package com.company.food;
 
-import com.company.config.i18n.MessageService;
-import com.company.config.security.details.SecurityUtil;
-import com.company.food.entity.FoodEntity;
+import com.company.base.ApiResponse;
+import com.company.configs.i18n.MessageService;
+import com.company.configs.security.utils.SecurityUtil;
 import com.company.expection.exp.DuplicateItemException;
 import com.company.expection.exp.ItemNotFoundException;
 import com.company.food.dto.FoodCr;
-import com.company.food.dto.FoodUpd;
-import com.company.base.ApiResponse;
 import com.company.food.dto.FoodResp;
+import com.company.food.dto.FoodUpd;
+import com.company.food.entity.FoodEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -25,6 +25,7 @@ public class FoodServiceImpl implements FoodService {
 
     private final FoodRepository foodRepository;
     private final MessageService messageService;
+    private final FoodDtoMapper foodDtoMapper;
 
     @Override
     public ApiResponse<FoodResp> create(FoodCr foodCr) {
@@ -40,7 +41,7 @@ public class FoodServiceImpl implements FoodService {
 
         log.info("food created, id: " + savedFood.getId());
 
-        return new ApiResponse<>(true, getMessage("success.created"), toDto(savedFood));
+        return new ApiResponse<>(true, getMessage("success.created"), foodDtoMapper.apply(savedFood));
     }
 
     @Override
@@ -54,7 +55,7 @@ public class FoodServiceImpl implements FoodService {
 
         log.info("food updated, id: " + updatedFood.getId());
 
-        return new ApiResponse<>(true, getMessage("success.updated"), toDto(updatedFood));
+        return new ApiResponse<>(true, getMessage("success.updated"), foodDtoMapper.apply(updatedFood));
     }
 
     @Override
@@ -75,7 +76,7 @@ public class FoodServiceImpl implements FoodService {
 
         FoodEntity food = get(id);
 
-        return new ApiResponse<>(true, toDto(food));
+        return new ApiResponse<>(true, foodDtoMapper.apply(food));
     }
 
     @Override
@@ -87,7 +88,7 @@ public class FoodServiceImpl implements FoodService {
         List<FoodResp> foodRespList = foodRepository
                 .findAllByVisibilityTrue(pageable)
                 .stream()
-                .map(this::toDto)
+                .map(foodDtoMapper)
                 .toList();
 
         return new ApiResponse<>(true, new PageImpl<>(foodRespList, pageable, foodRespList.size()));
@@ -100,7 +101,7 @@ public class FoodServiceImpl implements FoodService {
                 .findByNameAndVisibilityTrue(name)
                 .orElseThrow(ItemNotFoundException::new);
 
-        return new ApiResponse<>(true, toDto(food));
+        return new ApiResponse<>(true, foodDtoMapper.apply(food));
     }
 
     private FoodEntity get(UUID id) {
@@ -108,14 +109,6 @@ public class FoodServiceImpl implements FoodService {
         return foodRepository
                 .findByIdAndVisibilityTrue(id)
                 .orElseThrow(ItemNotFoundException::new);
-    }
-
-    private FoodResp toDto(FoodEntity savedFood) {
-
-        return FoodResp.builder()
-                .id(savedFood.getId())
-                .name(savedFood.getName())
-                .price(savedFood.getPrice()).build();
     }
 
     private FoodEntity toEntity(FoodCr foodCr) {
@@ -127,7 +120,6 @@ public class FoodServiceImpl implements FoodService {
     }
 
     private String getMessage(String msg) {
-
         return messageService.getMessage(msg, LocaleContextHolder.getLocale());
     }
 }

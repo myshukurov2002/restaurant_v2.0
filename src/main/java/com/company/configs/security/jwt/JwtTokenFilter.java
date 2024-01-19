@@ -1,9 +1,9 @@
-package com.company.config.security.jwt;
+package com.company.configs.security.jwt;
 
-import com.company.config.security.SecurityConfig;
+import com.company.configs.security.SecurityConfig;
 import com.company.expection.exp.UnAuthorizedException;
 import com.company.auth.dto.JwtResponse;
-import com.company.util.JWTUtil;
+import com.company.configs.security.utils.jwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -50,7 +50,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         String token = authHeader.substring(7);
         JwtResponse jwt;
         try {
-            jwt = JWTUtil.decode(token);
+            jwt = jwtUtil.decode(token);
 
         } catch (UnAuthorizedException e) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

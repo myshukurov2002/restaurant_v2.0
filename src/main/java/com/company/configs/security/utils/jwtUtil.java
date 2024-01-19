@@ -1,4 +1,4 @@
-package com.company.util;
+package com.company.configs.security.utils;
 
 
 import com.company.auth.enums.ProfileRole;
@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-public class JWTUtil {
+public class jwtUtil {
     @Value("${jwt.expiry}")
     private static long expiry = 1000*3600*24*10;
 

@@ -1,6 +1,6 @@
 package com.company.bron;
 
-import com.company.config.security.details.SecurityUtil;
+import com.company.configs.security.utils.SecurityUtil;
 import com.company.expection.exp.AppBadRequestException;
 import com.company.bron.dto.BronCr;
 import com.company.base.ApiResponse;

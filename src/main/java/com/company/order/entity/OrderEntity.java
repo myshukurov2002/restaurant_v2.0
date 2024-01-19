@@ -1,11 +1,12 @@
 package com.company.order.entity;
 
 import com.company.base.BaseEntity;
-import com.company.check.CheckEntity;
 import com.company.food.entity.FoodEntity;
+import com.company.menu.entity.MenuEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Setter
@@ -28,12 +29,12 @@ public class OrderEntity extends BaseEntity {
     private Integer quantity = 1; // by default
 
     @Column
-    private Double price;
+    private BigDecimal price = BigDecimal.ZERO;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "check_id", insertable = false, updatable = false)
-    private CheckEntity check;
+    @JoinColumn(name = "menu_id", insertable = false, updatable = false)
+    private MenuEntity menu;
 
-    @Column(name = "check_id")
-    private UUID checkId;
+    @Column(name = "menu_id")
+    private UUID menuId;
 }

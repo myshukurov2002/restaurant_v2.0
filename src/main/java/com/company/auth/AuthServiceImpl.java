@@ -1,6 +1,6 @@
 package com.company.auth;
 
-import com.company.config.i18n.MessageService;
+import com.company.configs.i18n.MessageService;
 import com.company.auth.entity.ProfileEntity;
 import com.company.auth.entity.ProfileRoleEntity;
 import com.company.auth.enums.ProfileRole;
@@ -11,8 +11,8 @@ import com.company.auth.dto.AuthDto;
 import com.company.auth.dto.RegistrationDto;
 import com.company.base.ApiResponse;
 import com.company.auth.dto.JwtResponse;
-import com.company.util.JWTUtil;
-import com.company.util.MD5Util;
+import com.company.configs.security.utils.jwtUtil;
+import com.company.configs.security.utils.md5Util;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -41,7 +41,7 @@ public class AuthServiceImpl implements AuthService {
                 .orElseThrow(ItemNotFoundException::new);
 
         if (Objects.equals(profileEntity.getPassword(),
-                MD5Util.encode(auth.password()))) {
+                md5Util.encode(auth.password()))) {
 
             log.warn("login: " + auth.password());
             return new ApiResponse<>(true, toDto(profileEntity));
@@ -87,7 +87,7 @@ public class AuthServiceImpl implements AuthService {
         return JwtResponse.builder()
                 .id(entity.getId())
                 .roles(roles)
-                .jwt(JWTUtil.encode(entity.getId(), roles))
+                .jwt(jwtUtil.encode(entity.getId(), roles))
                 .build();
     }
 
@@ -97,7 +97,7 @@ public class AuthServiceImpl implements AuthService {
                 .firstName(reg.firstName())
                 .lastName(reg.lastName())
                 .phone(reg.phone())
-                .password(MD5Util.encode(reg.password()))
+                .password(md5Util.encode(reg.password()))
                 .status(ProfileStatus.ACTIVE)
                 .build();
     }

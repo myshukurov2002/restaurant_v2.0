@@ -1,7 +1,7 @@
 package com.company.table;
 
-import com.company.config.i18n.MessageService;
-import com.company.config.security.details.SecurityUtil;
+import com.company.configs.i18n.MessageService;
+import com.company.configs.security.utils.SecurityUtil;
 import com.company.table.entity.TableEntity;
 import com.company.expection.exp.AppBadRequestException;
 import com.company.expection.exp.DuplicateItemException;
