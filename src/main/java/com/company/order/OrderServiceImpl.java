@@ -6,6 +6,7 @@ import com.company.expection.exp.AppBadRequestException;
 import com.company.order.dto.OrderCr;
 import com.company.order.dto.OrderResp;
 import com.company.order.entity.OrderEntity;
+import com.company.order.enums.FoodStatus;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,7 @@ public class OrderServiceImpl implements OrderService {
     public ApiResponse<OrderResp> create(OrderCr orderCr) {
 
         OrderEntity order = toEntity(orderCr);
+        order.setFoodStatus(FoodStatus.PREPARING);
 
         OrderEntity savedOrder = orderRepository.save(order);
 
@@ -51,6 +53,10 @@ public class OrderServiceImpl implements OrderService {
 
     private OrderEntity toEntity(OrderCr orderCr) {
 
-        return OrderEntity.builder().price(orderCr.price()).foodId(orderCr.foodId()).menuId(orderCr.menuId()).build();
+        return OrderEntity.builder()
+                .price(orderCr.price())
+                .foodId(orderCr.foodId())
+                .menuId(orderCr.menuId())
+                .build();
     }
 }

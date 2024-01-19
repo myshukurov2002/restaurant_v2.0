@@ -2,6 +2,7 @@ package com.company.order.entity;
 
 import com.company.base.BaseEntity;
 import com.company.food.entity.FoodEntity;
+import com.company.order.enums.FoodStatus;
 import com.company.menu.entity.MenuEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -24,6 +25,10 @@ public class OrderEntity extends BaseEntity {
 
     @Column(name = "food_id")
     private UUID foodId;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private FoodStatus foodStatus;
 
     @Column
     private Integer quantity = 1; // by default

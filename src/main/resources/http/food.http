@@ -4,7 +4,6 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDU0OTY3ODYsImlkIjoiNTUwZ
 Content-Type: application/json
 
 {
-  "name": "Kenchuzi",
   "price": 100000
 }
 

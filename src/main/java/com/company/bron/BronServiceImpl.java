@@ -1,5 +1,6 @@
 package com.company.bron;
 
+import com.company.bron.entity.BronEntity;
 import com.company.configs.security.utils.SecurityUtil;
 import com.company.expection.exp.AppBadRequestException;
 import com.company.bron.dto.BronCr;

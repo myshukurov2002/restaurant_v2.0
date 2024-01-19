@@ -21,18 +21,11 @@ import java.util.UUID;
 public class PaymentEntity extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "owner_id", insertable = false, updatable = false)
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private ProfileEntity profile;
 
-    @Column(name = "owner_id")
-    private UUID ownerId;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "table_id", insertable = false, updatable = false)
-    private TableEntity table;
-
-    @Column(name = "table_id")
-    private UUID tableId;
+    @Column(name = "user_id")
+    private UUID userId;
 
     @Column
     private BigDecimal sum = BigDecimal.ZERO;

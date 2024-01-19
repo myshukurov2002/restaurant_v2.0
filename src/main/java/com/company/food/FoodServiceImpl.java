@@ -9,6 +9,7 @@ import com.company.food.dto.FoodCr;
 import com.company.food.dto.FoodResp;
 import com.company.food.dto.FoodUpd;
 import com.company.food.entity.FoodEntity;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -28,6 +29,7 @@ public class FoodServiceImpl implements FoodService {
     private final FoodDtoMapper foodDtoMapper;
 
     @Override
+    @Transactional
     public ApiResponse<FoodResp> create(FoodCr foodCr) {
 
         foodRepository
@@ -45,6 +47,7 @@ public class FoodServiceImpl implements FoodService {
     }
 
     @Override
+    @Transactional
     public ApiResponse<FoodResp> update(UUID id, FoodUpd foodUpd) {
 
         FoodEntity food = get(id);
@@ -59,6 +62,7 @@ public class FoodServiceImpl implements FoodService {
     }
 
     @Override
+    @Transactional
     public ApiResponse<?> delete(UUID id) {
 
         FoodEntity food = get(id);

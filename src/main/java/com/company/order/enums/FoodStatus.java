@@ -1,4 +1,4 @@
-package com.company.food.enums;
+package com.company.order.enums;
 
 public enum FoodStatus {
     PREPARING,

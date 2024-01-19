@@ -2,7 +2,6 @@ package com.company.food.entity;
 
 import com.company.auth.entity.ProfileEntity;
 import com.company.base.BaseEntity;
-import com.company.food.enums.FoodStatus;
 import com.company.order.entity.OrderEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -25,10 +24,6 @@ public class FoodEntity extends BaseEntity {
 
     @Column
     private BigDecimal price;
-
-    @Column
-    @Enumerated(EnumType.STRING)
-    private FoodStatus foodStatus;
 
     @OneToMany(mappedBy = "food", fetch = FetchType.LAZY)
     private List<OrderEntity> order;

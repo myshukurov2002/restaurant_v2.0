@@ -1,4 +1,4 @@
-package com.company.bron;
+package com.company.bron.entity;
 
 import com.company.base.BaseEntity;
 import com.company.auth.entity.ProfileEntity;

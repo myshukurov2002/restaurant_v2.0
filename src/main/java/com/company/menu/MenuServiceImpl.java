@@ -19,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -54,11 +55,21 @@ public class MenuServiceImpl implements MenuService {
             orderService.create(orderCr);
         }
 
-        MenuEntity entity = menuRepository
-                .findById(savedMenu.getId())
-                .orElseThrow(ItemNotFoundException::new);
+        MenuEntity entity = get(savedMenu.getId());
 
         return new ApiResponse<>(true, toDto(entity));
+    }
+
+    @Override
+    public ApiResponse<MenuResp> getById(UUID id) {
+        return new ApiResponse<>(true, toDto(get(id)));
+    }
+
+    private MenuEntity get(UUID id) {
+
+        return menuRepository
+                .findById(id)
+                .orElseThrow(ItemNotFoundException::new);
     }
 
     private MenuResp toDto(MenuEntity entity) {
